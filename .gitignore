@@ -3,3 +3,4 @@ dist/
 recordings/
 test-results/
 *.local.txt
+.wrangler/
