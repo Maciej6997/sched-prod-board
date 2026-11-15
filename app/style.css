@@ -3,7 +3,7 @@ header, main, footer { padding: 12px 24px; }
 h1 { margin: 0; font-size: 22px; }
 .sub { margin: 2px 0 0; color: #666; }
 .list { list-style: none; margin: 0; padding: 0; max-width: 960px; }
-.row { display: grid; grid-template-columns: 90px 50px 1fr 200px auto; gap: 12px; align-items: center; min-height: 44px; padding: 0 12px; border-bottom: 1px solid #e5e5e5; background: #fff; }
+.row { display: grid; grid-template-columns: 90px 50px minmax(140px, 1fr) auto minmax(0, auto); cursor: pointer; gap: 12px; align-items: center; min-height: 44px; padding: 0 12px; border-bottom: 1px solid #e5e5e5; background: #fff; }
 .row .id { font-family: ui-monospace, monospace; }
 .row.sev1 .sev { color: #b00020; font-weight: 600; }
 .row.sev2 .sev { color: #a15c00; }
@@ -11,11 +11,23 @@ h1 { margin: 0; font-size: 22px; }
 footer { color: #777; font-size: 13px; }
 .loader, .empty { color: #555; max-width: 960px; }
 .error { color: #b00020; max-width: 960px; }
-.row .action { justify-self: end; }
-.row button { font: inherit; padding: 4px 14px; border: 1px solid #1d1d1f; border-radius: 6px; background: #fff; cursor: pointer; }
-.row button:disabled { opacity: .5; cursor: default; }
+.row .state { justify-self: end; }
 .row .acked { color: #1b6e2a; font-weight: 600; }
 .row.is-acked { background: #f3faf4; }
 .row.is-new { animation: flash 3s ease-out; }
 @keyframes flash { from { background: #fff3c4; } to { background: #fff; } }
 footer code { font-size: 12px; }
+.layout { display: flex; gap: 20px; align-items: flex-start; }
+.layout .list { flex: 1 1 auto; min-width: 0; }
+.row:hover { background: #f5f7fb; }
+.row:focus-visible { outline: 2px solid #2b59c3; outline-offset: -2px; }
+.row.is-open { box-shadow: inset 4px 0 0 #2b59c3; background: #eef3ff; }
+.panel { position: sticky; top: 12px; flex: 0 0 260px; padding: 14px 16px; border: 1px solid #d5dbe8; border-radius: 8px; background: #fff; }
+.panel p { margin: 6px 0; }
+.p-head { display: flex; gap: 8px; align-items: baseline; font-size: 17px; }
+.p-head .p-id { font-family: ui-monospace, monospace; }
+.p-close { margin-left: auto; border: 0; background: none; font-size: 20px; cursor: pointer; }
+.p-ack { width: 100%; margin-top: 8px; font: inherit; font-weight: 600; padding: 8px; border: 1px solid #1d1d1f; border-radius: 6px; background: #1d1d1f; color: #fff; cursor: pointer; }
+.p-ack:disabled { opacity: .5; cursor: default; }
+.p-acked { color: #1b6e2a; font-weight: 600; }
+@media (max-width: 760px) { .layout { flex-direction: column-reverse; } .panel { position: static; width: 100%; box-sizing: border-box; } }
